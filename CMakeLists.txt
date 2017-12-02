@@ -1,9 +1,7 @@
 cmake_minimum_required(VERSION 3.5.1)
-project(CPP Tests)
+project(CPP-Tests)
 
 add_subdirectory(curious_recursive)
-add_subdirectory(modern_cpp)
-add_subdirectory(multithreading)
 add_subdirectory(traits)
 add_subdirectory(typelists)
 
