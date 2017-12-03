@@ -4,4 +4,6 @@ project(CPP-Tests)
 add_subdirectory(curious_recursive)
 add_subdirectory(traits)
 add_subdirectory(typelists)
+add_subdirectory(modern_cpp)
+add_subdirectory(multithreading)
 
