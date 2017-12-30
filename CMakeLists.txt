@@ -8,4 +8,5 @@ add_subdirectory(multithreading)
 add_subdirectory(patterns)
 add_subdirectory(traits)
 add_subdirectory(typelists)
+add_subdirectory(utils)
 
