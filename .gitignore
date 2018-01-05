@@ -1,7 +1,8 @@
 *.swp
-*un~
+*.*~
 *.exe
 *.out
+*.obj
 
 build/
 

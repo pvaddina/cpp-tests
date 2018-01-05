@@ -1,15 +1,14 @@
 #include <iostream>
-using namespace std;
-
+#include <string>
 
 void PrintText(std::string str)
 {
-  std::cout << str << endl;
+  std::cout << str << std::endl;
 }
 
 void PrintNum(int i)
 {
-  std::cout << i << endl;
+  std::cout << i << std::endl;
 }
 
 
