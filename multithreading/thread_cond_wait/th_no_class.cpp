@@ -9,6 +9,7 @@
 #include <string>
 #include <sstream>
 #include <algorithm>
+#include <ctime>
 
 std::mutex m;
 std::condition_variable c;
@@ -68,7 +69,6 @@ RandomGenerator RGen;
     {
       std::this_thread::sleep_for(std::chrono::milliseconds(THREAD_SLEEP_TIME ));
       std::lock_guard<std::mutex> lk(m);
-      std::srand(std::time(nullptr)); // use current time as seed for random generator
       const int r = RGen.GetRandom();
       data.push_back(r);
 
