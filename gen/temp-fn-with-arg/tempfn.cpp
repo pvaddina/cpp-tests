@@ -1,28 +1,69 @@
 #include <iostream>
 #include <string>
 
-void PrintText(std::string str)
+namespace A
 {
-  std::cout << str << std::endl;
+   namespace B
+   {
+      void PrintText(std::string str)
+      {
+         std::cout << str << std::endl;
+      }
+
+      void PrintNum(int i)
+      {
+         std::cout << i << std::endl;
+      }
+
+      template <typename Fn, typename T>
+      void Print(Fn fn, T val)
+      {
+         (*fn)(val);
+      }
+
+      void TestTypelessArg()
+      {
+         Print(&PrintText, "This is a string");
+         Print(&PrintNum, 345);
+      }
+   }
 }
 
-void PrintNum(int i)
+namespace C
 {
-  std::cout << i << std::endl;
-}
+   namespace D
+   {
+      typedef void (*PrintTemp)(const std::string);
+      void PrintText(const std::string str) { std::cout << str << "-PrintText" << std::endl; }
+      void PrintNum(const std::string str) { std::cout << str << "-PrintNum" << std::endl; }
 
+      template <PrintTemp T>
+      class PSim
+      {
+         public:
+            void Print()
+            {
+               T(std::string("TestString"));
+            }
+      };
 
-template <typename Fn, typename T>
-void Print(Fn fn, T val)
-{
-  (*fn)(val);
+      typedef PSim<&PrintText> PSimOne;
+      typedef PSim<&PrintNum> PSimTwo;
+
+      void TestTypedArg()
+      {
+         PSimOne one;
+         PSimTwo two;
+         one.Print();
+         two.Print();
+      }
+   }
 }
 
 int main()
 {
-  Print(&PrintText, "This is a string");
-  Print(&PrintNum, 345);
-
-  return 0;
+   A::B::TestTypelessArg();
+   C::D::TestTypedArg();
+   return 0;
 }
 

@@ -20,7 +20,6 @@ const int TEST_FOR_MAX_VAL = 437;
 const int RAND_GEN_MIN = 0;
 const int RAND_GEN_MAX = 1000;
 
-
 class LockPrint
 {
   public:
@@ -48,8 +47,12 @@ struct RandomGen
 using RandomGenerator = RandomGen<RAND_GEN_MIN, RAND_GEN_MAX>;
 RandomGenerator RGen;
 
+class TClass
+{
+   private:
   std::vector<int> data;  
 
+   public:
   void Init()
   {
     std::lock_guard<std::mutex> lk(m);
@@ -80,38 +83,33 @@ RandomGenerator RGen;
     }
   }
 
-  void summer()
+  void worker()
   {
     while(true)
     {
       std::unique_lock<std::mutex> lk(m);
-      c.wait(lk, [](){ return !data.empty(); });
+      c.wait(lk, [this](){ return !data.empty(); });
       if (!data.empty())
       {
-        std::for_each(data.begin(), data.end(), [](const int& v) {
+        std::for_each(data.begin(), data.end(), [this](const int& v) {
             std::stringstream s;
-            if ( v > TEST_FOR_MAX_VAL )
-            {
-              s << "\t\t\t\t\t\tFound " << v << " in the vector, which is greater than MAX\n";
-            }
-            else
-            {
-              s << "\t\t\t\t\t\tFound " << v << " in the vector";
-            }
+            if ( v > TEST_FOR_MAX_VAL ) {s << "\t\t\t\t\t\tFound " << v << " in the vector, which is greater than MAX\n"; }
+            else { s << "\t\t\t\t\t\tFound " << v << " in the vector"; }
             LPrint.Print(s.str());
             });
         data.clear();
       }
     }
   }
+};
 
 
 int main()
 {
-  Init();
-
-  std::thread p(prep);
-  std::thread s(summer);
+   TClass th;
+   th.Init();
+   std::thread p(&TClass::prep, std::ref(th));
+   std::thread s(&TClass::worker, std::ref(th));
 
   p.join();
   s.join();
