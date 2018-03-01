@@ -23,6 +23,11 @@ template< class ExecutionPolicy, class ForwardIt, class UnaryPredicate >
 ForwardIt find_if( ExecutionPolicy&& policy, ForwardIt first, ForwardIt last, UnaryPredicate p );
 */
 
+/////////////////////////////////////////////////////////////////////
+//
+// Test-1
+// 
+/////////////////////////////////////////////////////////////////////
 struct Comparer
 {
   Comparer(const int v) : val(v) {}
@@ -62,6 +67,11 @@ void Test1()
   }
 }
 
+/////////////////////////////////////////////////////////////////////
+//
+// Test-2
+// 
+/////////////////////////////////////////////////////////////////////
 void Test2()
 {
   std::cout << std::endl << "Test-2:Demonstrate passing the callable as reference and not by value" << std::endl;
@@ -77,6 +87,11 @@ void Test2()
   }
 }
 
+/////////////////////////////////////////////////////////////////////
+//
+// Test-3
+// 
+/////////////////////////////////////////////////////////////////////
 bool HardcodedComparer(const int i)
 {
   std::cout << "Comparing against i=" << i << std::endl;
@@ -95,6 +110,11 @@ void Test3()
   }
 }
 
+/////////////////////////////////////////////////////////////////////
+//
+// Test-4
+// 
+/////////////////////////////////////////////////////////////////////
 void Test4()
 {
   std::cout << std::endl << "Test-4:Demonstrate using a Lambda function" << std::endl;
@@ -106,6 +126,9 @@ void Test4()
     std::cout << "Found the value=" << *it << std::endl;
   }
 }
+
+
+
 
 int main()
 {
