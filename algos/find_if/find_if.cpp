@@ -76,14 +76,13 @@ void Test2()
 {
   std::cout << std::endl << "Test-2:Demonstrate passing the callable as reference and not by value" << std::endl;
 
-  const Comparer comp(COMPARE_VAL);
+  Comparer comp(COMPARE_VAL);
   comp.Print("Value before the find operation");
 
-  //auto it = std::find_if(std::begin(data), std::end(data), std::ref(comp));
-  auto it = std::find_if(std::begin(data), std::end(data), comp);
+  auto it = std::find_if(std::begin(data), std::end(data), std::ref(comp));
   if (it != std::end(data))
   {
-    comp.Print("Value after the find operation (Note that it is still the same)");
+    comp.Print("Value after the find operation (Note that it is NOT the same)");
   }
 }
 
