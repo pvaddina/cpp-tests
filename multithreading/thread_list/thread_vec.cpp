@@ -5,6 +5,7 @@
 #include <numeric>
 #include <sstream>
 #include <mutex>
+#include <functional>
 
 const int MAX_VALUE = 100;
 const int MAX_THREADS = 10;
