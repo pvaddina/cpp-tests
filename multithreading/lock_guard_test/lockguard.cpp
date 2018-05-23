@@ -1,11 +1,3 @@
-/**
- * A simple example showing how the different guard functions work
- * - lock_guard
- * - unique_lock
- */
-
-
-
 #include <thread>
 #include <string>
 #include <iostream>
@@ -14,6 +6,27 @@
 
 std::mutex m;
 
+
+// A traits class definition accepting either a std::lock_guard/std::unique_lock.
+// It implements a single generic function which controls if the extra call to the
+// lock() method is present or not, depending on the type of the lock handler.
+template <typename T>
+struct LockTraits
+{
+    static void do_lock(T& t) {}
+};
+
+template <>
+struct LockTraits<std::unique_lock<std::mutex> >
+{
+    static void do_lock(std::unique_lock<std::mutex>& t)
+    {
+      t.lock();
+    }
+};
+
+
+template<typename MTYPE>
 class LGDemo
 {
   public:
@@ -26,7 +39,8 @@ class LGDemo
       while(true) 
       {
         std::this_thread::sleep_for(t);
-        std::lock_guard<std::mutex> mTex(m);
+        MTYPE mTex(m);
+        LockTraits<MTYPE>::do_lock(mTex);
         std::cout << mPrintStr << std::endl;
       }
     }
@@ -39,11 +53,13 @@ class LGDemo
 
 int main()
 {
-  LGDemo firstThread(100,  "-------------- Thread-1 ------------------");
-  LGDemo secondThread(500, "                                            ++++++++++++++ Thread-2 ++++++++++++++++++");
+  using LockGuardTester = LGDemo<std::lock_guard<std::mutex> >;
+  using UniqueLockTester = LGDemo<std::unique_lock<std::mutex> >;
+  LockGuardTester firstThread(100,  "-------------- Thread-1 ------------------");
+  LockGuardTester secondThread(500, "                                            ++++++++++++++ Thread-2 ++++++++++++++++++");
 
-  std::thread t1(&LGDemo::Worker, std::ref(firstThread));
-  std::thread t2(&LGDemo::Worker, std::ref(secondThread));
+  std::thread t1(&LockGuardTester::Worker, std::ref(firstThread));
+  std::thread t2(&LockGuardTester::Worker, std::ref(secondThread));
 
   t1.join();
   t2.join();
