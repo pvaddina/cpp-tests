@@ -6,7 +6,6 @@
 
 std::mutex m;
 
-
 // A traits class definition accepting either a std::lock_guard<std::mutex>/std::unique_lock<std::mutex>.
 // It implements simple generic functionis to allow different combination of behavior that are possible
 // by combining the types with the DEFER flag
@@ -18,6 +17,9 @@ std::mutex m;
 template <typename T, bool DEFER>
 struct LockTraits
 {
+  // Note the following function. When no RVO/NRVO is implemented by the compiler
+  // by default, this will return a copy of the object created. And that is a problem
+  // since the copy/move constructor are explicitly disabled for the lock handlers
   static T GetNewLock(std::mutex& _m) { return T(_m); } 
   static void LockIt(T& _t) { /* Do Nothing. Mutex is already locked.*/ }
 };
@@ -50,7 +52,7 @@ class LGDemo
       while(true) 
       {
         std::this_thread::sleep_for(t);
-        MTYPE mTex = LockTraits<MTYPE,LTYPE>::GetNewLock(m);
+        MTYPE mTex (LockTraits<MTYPE,LTYPE>::GetNewLock(m));
         LockTraits<MTYPE,LTYPE>::LockIt(std::ref(mTex));
         std::cout << mPrintStr << std::endl;
       }
@@ -84,7 +86,6 @@ void Test()
   t2.join();
 }
 
-#define UNIQUE_LOCK_WITH_DEFERRING
 
 int main()
 {
