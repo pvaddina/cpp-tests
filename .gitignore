@@ -7,3 +7,5 @@
 *.orig
 
 build/
+ninja/
+vs/

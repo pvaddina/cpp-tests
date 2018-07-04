@@ -1,3 +1,0 @@
-C:/Users/praka/workspace/cpp-tests/modern_cpp/variant/vs/CMakeFiles/variant.dir
-C:/Users/praka/workspace/cpp-tests/modern_cpp/variant/vs/CMakeFiles/ALL_BUILD.dir
-C:/Users/praka/workspace/cpp-tests/modern_cpp/variant/vs/CMakeFiles/ZERO_CHECK.dir
