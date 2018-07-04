@@ -1,0 +1,4 @@
+﻿  Building Custom Rule C:/Users/praka/workspace/cpp-tests/modern_cpp/variant/CMakeLists.txt
+  CMake does not need to re-run because C:/Users/praka/workspace/cpp-tests/modern_cpp/variant/vs/CMakeFiles/generate.stamp is up-to-date.
+  var.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\variant(16): fatal error C1189: #error:  class template variant is only available with C++17.
