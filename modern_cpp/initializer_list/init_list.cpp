@@ -119,24 +119,11 @@ void testFoo3()
   f1.Print();
 }
 
-void testFoo4()
-{
-  std::cout << std::endl << std::endl << "############## TestFoo4 ##############" << std::endl;
-  C *c = new C{445566, "String on the heap"};
-  Foo3 f1 { {123, "In String"}, { 567, "Out string" }, *c };
-  f1.Print();
-  //f1.in.v2 = "Cannot do this. Will result in an ERROR";
-  c->v2 = "String on the heap is now replaced with this temporary string";
-  f1.out.v2 = "This is OK.";
-  f1.Print();
-}
-
 int main()
 {
   testFoo();
   testFoo2();
   testFoo3();
-  testFoo4();
   
   return 0;
 }
