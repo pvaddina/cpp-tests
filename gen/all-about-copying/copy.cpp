@@ -43,6 +43,11 @@ void StructIniTest()
 
   Basic objBasic5({objBasic1});
   objBasic5.Print("Default Copy constructing objBasic5 from objBasic1 passed as an initializer list, objBasic5");
+
+  Basic objBasic6 { 55, 55.66 };
+  objBasic6.Print("Default initialization of objBasic6");
+  objBasic6 = objBasic5;
+  objBasic6.Print("Default assignment of objBasic6");
 }
 
 /////////////////////////////////////////////////////////////////////////////
