@@ -37,7 +37,7 @@ void IntTypTester(MyTyp& t)
 void StrTypTester(MyTyp& t)
 {
   t = StrTyp("This is a string");
-  std::get<StrTyp>(t).Print();
+  std::get<StrTyp>(t).Print()
 }
 
 void DoubTypTester(MyTyp& t)

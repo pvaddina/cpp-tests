@@ -81,9 +81,9 @@ Adv GetNewAdv()
   return Adv();
 }
 
-void AdvTest()
+void CopyElisionTest1()
 {
-  std::cout << "######################## In AdvTest" << std::endl;
+  std::cout << "######################## In CopyElisionTest1" << std::endl;
   std::cout << "Test-1: Adv a1 = GetNewAdv()" << std::endl;
   Adv a1 = GetNewAdv();
 
@@ -93,11 +93,14 @@ void AdvTest()
   std::cout << "\nTest-3: a3 = GetNewAdv()" << std::endl;
   Adv a3;
   a3 = GetNewAdv();
+
+  std::cout << "\nTest-4: Adv a4 = Adv(Adv(Adv())). According to the spec this statement should lead to a call to the default constructor only. There **should** be no call to the copy or move constructor of 'Adv'. But not all compilers abide by it." << std::endl;;
+  Adv a4 = Adv(Adv(Adv()));
 }
 
 int main()
 {
     StructIniTest();
-    AdvTest();
+    CopyElisionTest1();
     return 0;
 }
