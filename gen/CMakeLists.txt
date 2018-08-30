@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.5.1)
 
 project(General-CPP-concepts-implementations)
 
-add_subdirectory(all-about-const)
-add_subdirectory(all-about-copying)
+#add_subdirectory(all-about-const)
+#add_subdirectory(all-about-copying)
 add_subdirectory(base-data-extension)
 add_subdirectory(base_cast_op)
 add_subdirectory(bit_range)
