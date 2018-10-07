@@ -9,5 +9,5 @@ add_subdirectory(ppack_fn)
 #add_subdirectory(ppack_utils)
 add_subdirectory(range_for)
 #add_subdirectory(variant)
-
+add_subdirectory(smart_ptrs_unique)
 
