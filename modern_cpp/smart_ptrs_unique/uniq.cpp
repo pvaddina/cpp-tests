@@ -88,6 +88,12 @@ namespace T3
     return std::unique_ptr<FooStruct>(new FooStruct(std::forward<Ts>(args)...));
   }
 
+  template <typename T, typename... Ts>
+  std::unique_ptr<T> MakeAnyStruct(Ts&&... args)
+  {
+    return std::unique_ptr<T>(new T(std::forward<Ts>(args)...));
+  }
+
   void Test()
   {
     std::cout << "In T3::Test" << std::endl;
@@ -99,6 +105,15 @@ namespace T3
     p2->Print();
 
     auto p3 = MakeFooStruct(444, std::string("Two arguments"));
+    p3->Print();
+
+    auto p4 = MakeAnyStruct();
+    p1->Print();
+
+    auto p5 = MakeAnyStruct(std::string("Only one argument"));
+    p2->Print();
+
+    auto p6 = MakeAnyStruct(444, std::string("Two arguments"));
     p3->Print();
   }
 }
