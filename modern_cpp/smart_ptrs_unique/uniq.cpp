@@ -107,6 +107,40 @@ namespace T3
     auto p3 = MakeFooStruct(444, std::string("Two arguments"));
     p3->Print();
 
+    auto p4 = MakeAnyStruct<FooStruct>();
+    p4->Print();
+
+    auto p5 = MakeAnyStruct<FooStruct>(std::string("Only one argument"));
+    p5->Print();
+
+    auto p6 = MakeAnyStruct<FooStruct>(444, std::string("Two arguments"));
+    p6->Print();
+  }
+}
+
+
+namespace T4
+{
+#if 0
+  template <typename T, typename... Ts>
+  std::unique_ptr<T> MakeAnyStruct(Ts&&... args)
+  {
+    return std::unique_ptr<T>(new T(std::forward<Ts>(args)...));
+  }
+
+  void Test()
+  {
+    std::cout << "In T3::Test" << std::endl;
+
+    auto p1 = MakeFooStruct();
+    p1->Print();
+
+    auto p2 = MakeFooStruct(std::string("Only one argument"));
+    p2->Print();
+
+    auto p3 = MakeFooStruct(444, std::string("Two arguments"));
+    p3->Print();
+
     auto p4 = MakeAnyStruct();
     p1->Print();
 
@@ -116,6 +150,7 @@ namespace T3
     auto p6 = MakeAnyStruct(444, std::string("Two arguments"));
     p3->Print();
   }
+#endif
 }
 
 
