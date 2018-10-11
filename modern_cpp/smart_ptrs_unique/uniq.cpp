@@ -187,10 +187,26 @@ namespace T5
     v.push_back(MakeAnyStruct<FooStruct>("Some string"));
     v.push_back(MakeAnyStruct<FooStruct>(46354, "Another String"));
 
+    auto i = 0;
     for (auto& iter : v)
-    {
+    { 
+      std::cout << i++ << ".";
       iter->Print();
     }
+
+    // auto p = v[0];  // Compilation error. Use of deleted copy constructor 
+    auto movedP = std::move(v[0]); // Fine. This is constructed with move semantics. Allowed.
+    i = 0;
+    for (auto& iter : v)
+    {
+      std::cout << i++ << ".";
+      if (iter)
+        iter->Print();
+      else
+        std::cout << "<<<<<< Invalid index >>>>>>>>" << std::endl;
+    }
+    std::cout << "Printing contents of movedP: ";
+    movedP->Print();
   }
 }
 

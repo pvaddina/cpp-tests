@@ -11,7 +11,7 @@ struct SomeStruct
   }
   void LambdaTest()
   {
-    // Lamdacapture test within a class: Capturing this without a reference
+    // Lambda capture test within a class: Capturing this without a reference
     std::cout << "\nLamdatest: Passing this directly\n================================" << std::endl;
     auto l = [this]() {
       std::cout << "Calling this->Print()" << std::endl;
@@ -21,7 +21,7 @@ struct SomeStruct
     };
     l();
 
-    // Lamdacapture test within a class: Capturing *this without a reference
+    // Lambda capture test within a class: Capturing *this without a reference
     std::cout << "\nLamdatest: Passing *this directly\n================================" << std::endl;
     auto l1 = [*this]() {
       std::cout << "Calling this->Print()" << std::endl;
@@ -31,7 +31,7 @@ struct SomeStruct
     };
     l1();
 
-    // Lamdacapture test within a class: Passing everything within the scope as reference '&'
+    // Lambda capture test within a class: Passing everything within the scope as reference '&'
     std::cout << "\nLamdatest: Passing everything with '&'\n================================" << std::endl;
     auto l2 = [&]() {
       std::cout << "Calling this->Print()" << std::endl;
@@ -41,7 +41,7 @@ struct SomeStruct
     };
     l2();
 
-    // Lamdacapture test within a class: Capturing *this without a reference
+    // Lambda capture test within a class: Capturing *this without a reference
     std::cout << "\nLamdatest: Passing everything with '='\n================================" << std::endl;
     auto l3 = [=]() {
       std::cout << "Calling this->Print(). Note no copy constructor called" << std::endl;
