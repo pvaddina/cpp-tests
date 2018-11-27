@@ -63,7 +63,7 @@ void Test()
   // Test-1: Pass everything as reference
   std::cout << "Test1\n======" << std::endl;
   auto l1 = [&]() {
-    std::cout << "Testing passing EVERYTHING in the scope as reference" << std::endl;
+    std::cout << "Test passing EVERYTHING in the scope as reference" << std::endl;
     s.Print();
   };
   l1();
@@ -71,7 +71,7 @@ void Test()
   // Test-2: Pass everything as copy
   std::cout << "\nTest2\n======" << std::endl;
   auto l2 = [=]() {
-    std::cout << "Testing passing EVERYTHING in the scope as copy. Note the values of the object are set to the default" << std::endl;
+    std::cout << "Test passing EVERYTHING in the scope as copy. Note the values of the object are set to the default" << std::endl;
     s.Print();
   };
   l2();
