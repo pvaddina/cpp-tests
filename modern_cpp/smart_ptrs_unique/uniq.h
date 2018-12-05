@@ -208,6 +208,8 @@ namespace T5
     std::cout << "Printing contents of movedP: ";
     movedP->Print();
   }
+  
+  // TBD: Add an example with base class unique_ptrs in a vector
 }
 
 
