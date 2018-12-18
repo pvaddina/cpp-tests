@@ -10,7 +10,7 @@ A repo dedicated for all kinds of CPP tests. Topics covered so far include:
 These examples are meant to be a reference for me more than anything else. All the projects are integrated with CMake and it is also planned to integrate AppVeyor for continuous integration. 
 
 To use the repo, and compile all the projects, one would need:
-1. A CPP compiler with C++11 support (I used, VS 2017 in Windows, GCC in Linux)
+1. A CPP compiler with C++11 support (I used, VS 2017 on Windows, GCC on Linux)
 2. CMake, to run all the examples. 
 
 All the projects were also compiled under Linux. So unless otherwise stated, all the projects should continue to work both under Windows and Linux. 
