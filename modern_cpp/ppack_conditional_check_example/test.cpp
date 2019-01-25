@@ -1,57 +1,37 @@
 #include <iostream>
-#include <type_traits>
+#include <functional>
+#include "sfinae.h"
+#include "if_constexpr.h"
 
-template <typename DST, typename... Ts>
-void SetValue(DST& dst, Ts&&... ts)
+template <typename... Ts>
+void TestBoth(Ts... ts)
 {
-  CheckAndSetVal(dst, std::forward<Ts>(ts)...);
+  int i = 0;
+  SFINAE::SetValue(i, std::forward<Ts>(ts)...);
+  std::cout << "Value using SFINAE::SetValue:" << i << std::endl;
+
+  int j = 0;
+  ConstExpression::SetValue(j, std::forward<Ts>(ts)...);
+  std::cout << "Value using ConstExpression::SetValue:" << j << std::endl;
 }
 
-template <typename DST>
-void CheckAndSetVal(DST&) {}
-
-template <typename DST, typename T1, typename T2, typename... Ts>
-std::enable_if_t<std::is_same_v<DST, T2> > CheckAndSetVal(DST& dst, T1&& cond, T2&& val, Ts&&... ts)
+void RunTests1()
 {
-  if (cond())
-    dst = val;
-  else
-    CheckAndSetVal(dst, std::forward<Ts>(ts)...);
-}
+  TestBoth([]() { return false; }, 444
+         , []() { return false; }, 999
+         , []() { return true; }, []() { return 222; });
 
-template <typename DST, typename T1, typename T2, typename... Ts>
-std::enable_if_t<!std::is_same_v<DST, T2> > CheckAndSetVal(DST& dst, T1&& cond, T2&& val, Ts&&... ts)
-{
-  if (cond())
-    dst = val();
-  else
-    CheckAndSetVal(dst, std::forward<Ts>(ts)...);
-}
+  TestBoth([]() { return false; }, 444
+         , []() { return true; }, 999
+         , []() { return true; }, []() { return 222; });
 
+  TestBoth([]() { return false; }, 444
+         , []() { return false; }, 999
+         , []() { return false; }, []() { return 222; });
+}
 
 int main()
 {
-  int i;
-  SetValue(i, []() { return false; }, 444
-            , []() { return false; }, 999
-            , []() { return true; }, []() { return 222; });
-
-  std::cout << i << std::endl;
-
-  int j;
-  SetValue(j, []() { return false; }, 444
-            , []() { return true; }, 999
-            , []() { return true; }, []() { return 222; });
-
-  std::cout << j << std::endl;
-
-  int z = 0;
-  SetValue(z, []() { return false; }, 444
-            , []() { return false; }, 999
-            , []() { return false; }, []() { return 222; });
-
-  std::cout << z << std::endl;
-
-  return 0;
+  RunTests1();
 }
 
