@@ -1,7 +1,7 @@
 # CPP-Tests
 
 A repo dedicated for all kinds of CPP tests. Topics covered so far include:
-1. modern cpp features (c++11,14)
+1. modern cpp features (c++11,14,17)
 2. multi-threading support (mostly since c++11)
 3. generic programming with templates (both c++98 and c++11)
 4. patterns and concepts
