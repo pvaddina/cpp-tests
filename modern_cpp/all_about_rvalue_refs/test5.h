@@ -35,8 +35,6 @@ namespace Test5
     const std::string constStr{ "A const l-value string" };
     TMoveConstruction t4{ std::move(5), std::move(23.43534), constStr }; // Cannot bind rvalue reference (constructor of TMoveConstruction) to an lvalue of 'const string'
     TMoveConstruction t4{ std::move(5), std::move(23.43534), std::move(constStr) }; // Forcing the bind to an rvalue reference (constructor of TMoveConstruction) discards qualifiers
-    std::cout << t4.v << " - " << t4.d << " - " << t4.str << std::endl;
-    std::cout << constStr << std::endl;
 #endif
   }
 }
