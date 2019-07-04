@@ -19,7 +19,7 @@ int main()
     Test7::Test7();
     Test8::Test();
     Test9::Test();
-    Test10::TestPerfectForwarding();
+    Test10::Test();
 
     return 0;
 }
