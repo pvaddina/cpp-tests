@@ -1,5 +1,4 @@
-#include "test1.h"
-#include "test2.h"
+#include "test_legacy.h"
 #include "test3.h"
 #include "test4.h"
 #include "test5.h"
@@ -12,17 +11,14 @@
 
 int main()
 {
-#if 0
-    Test1::Test1();
-    Test2::Test2();
+    Test1::RunTests();
     Test3::Test3();
-    Test4::Test4();
+    Test4::OverloadTests();
     Test5::Test5();
     Test6::Test6();
     Test7::Test7();
     Test8::Test();
     Test9::Test();
-#endif
     Test10::TestPerfectForwarding();
 
     return 0;

@@ -9,22 +9,6 @@ const int COMPARE_VAL = 112;
 
 /////////////////////////////////////////////////////////////////////
 //
-// Function definitions
-// 
-/////////////////////////////////////////////////////////////////////
-/*
-template< class InputIt, class T >
-InputIt find( InputIt first, InputIt last, const T& value );
-
-template< class InputIt, class T >
-constexpr InputIt find( InputIt first, InputIt last, const T& value );
-
-template< class ExecutionPolicy, class ForwardIt, class T >
-ForwardIt find( ExecutionPolicy&& policy, ForwardIt first, ForwardIt last, const T& value );
-*/
-
-/////////////////////////////////////////////////////////////////////
-//
 // TEST-1
 // 
 /////////////////////////////////////////////////////////////////////
