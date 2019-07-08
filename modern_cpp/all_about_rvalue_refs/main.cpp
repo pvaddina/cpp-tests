@@ -11,6 +11,7 @@
 
 int main()
 {
+#if 0
     Test1::RunTests();
     Test3::Test3();
     Test4::OverloadTests();
@@ -19,6 +20,7 @@ int main()
     Test7::Test7();
     Test8::Test();
     Test9::Test();
+#endif
     Test10::Test();
 
     return 0;
