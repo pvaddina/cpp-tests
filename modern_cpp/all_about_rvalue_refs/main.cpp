@@ -1,5 +1,5 @@
 #include "test_legacy.h"
-#include "test3.h"
+#include "test_rvalues.h"
 #include "test4.h"
 #include "test5.h"
 #include "test6.h"
@@ -11,16 +11,14 @@
 
 int main()
 {
-#if 0
     Test1::RunTests();
-    Test3::Test3();
+    RValueTest::Test3();
     Test4::OverloadTests();
     Test5::Test5();
     Test6::Test6();
     Test7::Test7();
     Test8::Test();
     Test9::Test();
-#endif
     Test10::Test();
 
     return 0;

@@ -58,6 +58,7 @@ namespace Test1
 
     void RunTests()
     {
+      std::cout << "######################################## Testing legacy cases ...." << std::endl;
       ConstTests();
       NonConstTests();
     }
