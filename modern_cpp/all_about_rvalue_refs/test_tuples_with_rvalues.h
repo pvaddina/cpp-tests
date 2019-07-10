@@ -49,7 +49,7 @@ namespace Test8
     std::cout << "name after moving=" << name << std::endl; // Since the string has been moved, this will result in an empty name
   }
 
-  void Test()
+  void Test_TupleWithRValues()
   {
     Test1();
     Test2();

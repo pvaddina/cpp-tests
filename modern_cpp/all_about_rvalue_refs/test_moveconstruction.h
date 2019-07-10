@@ -18,7 +18,7 @@ namespace Test5
     const TMoveConstruction localT;
   };
 
-  void Test5()
+  void Test_MoveConstruction()
   {
     TMoveConstruction t1{ std::move(5), std::move(23.43534), std::move(std::string("Some user string")) }; // With explicit move cast
     std::cout << t1.v << " - " << t1.d << " - " << t1.str << std::endl;

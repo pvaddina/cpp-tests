@@ -141,7 +141,7 @@ namespace Test10
       }
   }
 
-  void Test()
+  void Test_PerfectForwarding()
   {
     std::cout << "######################################## Testing Perfect forwarding ...." << std::endl;
     Problem::TestProblem();

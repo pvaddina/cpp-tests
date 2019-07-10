@@ -35,7 +35,7 @@ namespace Test7
     LvalueAcceptor(sd);
   }
 
-  void Test7()
+  void Test_DoublePassing()
   {
     RvalueAcceptor(SimpleData{437, "Roll number"});
   }

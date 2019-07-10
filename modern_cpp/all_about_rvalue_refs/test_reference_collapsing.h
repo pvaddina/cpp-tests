@@ -44,7 +44,7 @@ namespace Test9
     }
 
 
-  void Test()
+  void Test_ReferenceCollapsing()
   {
     std::cout << "Test-1: Calling Foo(std::string&&)" << std::endl;
     Foo("Test string 1");

@@ -1,25 +1,23 @@
+#include "test_copyeffects.h"
+#include "test_doublepassing.h"
 #include "test_legacy.h"
-#include "test_rvalues.h"
-#include "test4.h"
-#include "test5.h"
-#include "test6.h"
-#include "test7.h"
-#include "test8.h"
-#include "test9.h"
+#include "test_moveconstruction.h"
+#include "test_overloads.h"
 #include "test_perfect_forwarding.h"
+#include "test_reference_collapsing.h"
+#include "test_tuples_with_rvalues.h"
 
 
 int main()
 {
-    Test1::RunTests();
-    RValueTest::Test3();
+    Test1::Test_Legacy();
     Test4::OverloadTests();
-    Test5::Test5();
-    Test6::Test6();
-    Test7::Test7();
-    Test8::Test();
-    Test9::Test();
-    Test10::Test();
+    Test5::Test_MoveConstruction();
+    Test6::Test_CopyEffects();
+    Test7::Test_DoublePassing();
+    Test8::Test_TupleWithRValues();
+    Test9::Test_ReferenceCollapsing();
+    Test10::Test_PerfectForwarding();
 
     return 0;
 }

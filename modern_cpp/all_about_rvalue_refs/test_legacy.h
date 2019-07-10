@@ -56,7 +56,7 @@ namespace Test1
     }
 
 
-    void RunTests()
+    void Test_Legacy()
     {
       std::cout << "######################################## Testing legacy cases ...." << std::endl;
       ConstTests();

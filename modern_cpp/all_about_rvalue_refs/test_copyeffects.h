@@ -54,7 +54,7 @@ namespace Test6
   };
 
 
-  void Test6()
+  void Test_CopyEffects()
   {
     // Trying to construct an object as below will create a Wrapper object first and the 
     // object 'one' is copy constructed using the temporary (as opposed to copy assigned)
