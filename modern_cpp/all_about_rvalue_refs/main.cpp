@@ -4,7 +4,7 @@
 #include "test_moveconstruction.h"
 #include "test_overloads.h"
 #include "test_perfect_forwarding.h"
-#include "test_reference_collapsing.h"
+#include "test_impact_of_move.h"
 #include "test_tuples_with_rvalues.h"
 
 
@@ -16,7 +16,7 @@ int main()
     Test6::Test_CopyEffects();
     Test7::Test_DoublePassing();
     Test8::Test_TupleWithRValues();
-    Test9::Test_ReferenceCollapsing();
+    Test9::Test_MoveImpact();
     Test10::Test_PerfectForwarding();
 
     return 0;

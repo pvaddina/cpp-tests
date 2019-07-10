@@ -28,23 +28,23 @@ namespace Test9
   }
 
   template <typename T>
-    void Goo(T&& s)
-    {
-      std::string value = std::move(s);
-      std::cout << "value in Goo=" << value << std::endl;
-      std::cout << "s in Goo, after move=" << s << std::endl;
-    }
+  void Goo(T&& s)
+  {
+    std::string value = std::move(s);
+    std::cout << "value in Goo=" << value << std::endl;
+    std::cout << "s in Goo, after move=" << s << std::endl;
+  }
 
   template <typename T>
-    void Hoo(T&& s)
-    {
-      T value = std::move(s);
-      std::cout << "value in Hoo=" << value << std::endl;
-      std::cout << "s in Hoo, after move=" << s << std::endl;
-    }
+  void Hoo(T&& s)
+  {
+    T value = std::move(s);
+    std::cout << "value in Hoo=" << value << std::endl;
+    std::cout << "s in Hoo, after move=" << s << std::endl;
+  }
 
 
-  void Test_ReferenceCollapsing()
+  void Test_MoveImpact()
   {
     std::cout << "Test-1: Calling Foo(std::string&&)" << std::endl;
     Foo("Test string 1");

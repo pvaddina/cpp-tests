@@ -56,6 +56,7 @@ namespace Test6
 
   void Test_CopyEffects()
   {
+    std::cout << "######################################## Testing when and where copy operation is called\n";
     // Trying to construct an object as below will create a Wrapper object first and the 
     // object 'one' is copy constructed using the temporary (as opposed to copy assigned)
     // auto one = WrapperWithMove{ {111, "One" } };
