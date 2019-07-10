@@ -59,10 +59,33 @@ namespace T2
 }
 #endif
 
+namespace T3
+{
+  template<bool VAL>
+  struct Direction
+  {
+    template<bool IN=VAL> 
+    typename std::enable_if<IN>::type Print() { std::cout << "In direction\n" << std::endl; }
+
+    template<bool IN=VAL> 
+    typename std::enable_if<!IN>::type Print() { std::cout << "Out direction\n" << std::endl; }
+  };
+
+  int Test_Direction()
+  {
+    Direction<true> in;
+    Direction<false> out;
+    in.Print();
+    out.Print();
+  }
+}
+
+
 int main()
 {
   T1::Test();
   //T2::Test();
+  T3::Test_Direction();
   return 0;
 }
 
