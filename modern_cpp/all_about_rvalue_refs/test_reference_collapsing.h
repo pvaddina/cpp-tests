@@ -28,7 +28,7 @@ namespace Test11
     Foo<std::string> f1;
     std::string s {"Some lvalue string. Template argument \'V\' is deduced to std::string&. And Due to reference collapsing, && & results in &." };
     
-    // OK to call with an lvalue (Reference collpsing: V deduced as std::string&. && & collapses to &)
+    // OK to call with an lvalue (Reference collapsing: V deduced as std::string&. && & collapses to &)
     f1.Print(s);
 
     // OK to call with an rvalue
