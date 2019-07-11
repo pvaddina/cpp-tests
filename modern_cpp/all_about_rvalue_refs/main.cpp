@@ -6,6 +6,7 @@
 #include "test_perfect_forwarding.h"
 #include "test_impact_of_move.h"
 #include "test_tuples_with_rvalues.h"
+#include "test_reference_collapsing.h"
 
 
 int main()
@@ -18,6 +19,7 @@ int main()
     Test8::Test_TupleWithRValues();
     Test9::Test_MoveImpact();
     Test10::Test_PerfectForwarding();
+    Test11::Test_ReferenceCollapsing();
 
     return 0;
 }
