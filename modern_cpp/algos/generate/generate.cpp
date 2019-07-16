@@ -2,38 +2,37 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <functional>
 
 namespace T1
 {
-  auto global_gen = []() {
-    auto initStart = 0;
-    return [&]() mutable { 
-      std::string start = "Zero";
-      if      (initStart == 1) { start = "One"; }
-      else if (initStart == 2) { start = "Two"; }
-      else if (initStart == 3) { start = "Three"; }
-      ++initStart;
-      return start;
-    };
-  };
-
-  
   class Foo
   {
     public:
-      Foo(int sz, std::function<std::string()>& generator)
+      Foo(int sz, std::function<std::string()>&& generator)
         : mNames(sz)
       {
-        std::generate(mNames.begin(), mNames.end(), generator());
+        std::generate(mNames.begin(), mNames.end(), generator);
       }
     private:
       std::vector<std::string> mNames;
   };
 
-  void Test1()
+  void Test()
   {
+    auto initStart = 0;
+
+    auto value_gen = [initStart]() mutable {
+      std::string value = "Zero";
+      if      (initStart == 1) { value = "One"; }
+      else if (initStart == 2) { value = "Two"; }
+      else if (initStart == 3) { value = "Three"; }
+      ++initStart;
+      return value;
+    };
+
     std::vector<std::string> numberStrings(4);
-    std::generate(numberStrings.begin(), numberStrings.end(), global_gen());
+    std::generate(numberStrings.begin(), numberStrings.end(), value_gen);
     for (auto& st: numberStrings)
       std::cout << st << std::endl;
   }
