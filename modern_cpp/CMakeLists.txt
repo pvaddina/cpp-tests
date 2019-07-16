@@ -2,12 +2,12 @@ cmake_minimum_required(VERSION 3.5.1)
 
 project(Modern-CPP-Tests)
 
+add_subdirectory(algos)
 add_subdirectory(all_about_constexpr)
 add_subdirectory(all_about_lambdas)
 add_subdirectory(all_about_rvalue_refs)
 add_subdirectory(all_about_variant)
 add_subdirectory(copy_move)
-add_subdirectory(find_algo_tests)
 add_subdirectory(generic_lambda)
 add_subdirectory(initializer_list)
 add_subdirectory(ppack_conditional_check_example)
