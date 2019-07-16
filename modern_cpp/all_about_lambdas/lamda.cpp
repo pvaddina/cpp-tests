@@ -178,7 +178,7 @@ namespace T2
     // class some_compiler_generated_class_name
     // {
     //   public:
-    //      void operator()() const { return ini_start+324; } --> Note the function is const
+    //      void operator()() const { return ini_start+324; } --> Note the function is const, as the lambda is NOT defined as mutable
     //   private: 
     //      int ini_start;
     // };
