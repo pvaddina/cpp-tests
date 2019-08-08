@@ -93,6 +93,8 @@ namespace T2
 
   template<class T> struct always_false : std::false_type {};
 
+  // The following definition is lifted from the following link:
+  // https://en.cppreference.com/w/cpp/utility/variant/visit
   auto MyTypProcessor = [](auto&& t) {
     using AT = std::decay_t<decltype(t)>;
 
