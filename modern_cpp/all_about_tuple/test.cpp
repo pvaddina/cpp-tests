@@ -89,28 +89,47 @@ namespace T2
 
 namespace T3
 {
-  struct Doo
+  struct SimplePrinter
   {
-      void VisitAllPrints(std::string&& s)
-      {
-        
-      }
-    private:
-      void NormalPrint(std::string&& s) { std::cout << "In NormalPrint() method. " << s << "\n"; }
-      void UniquePrint(std::string&& s) { std::cout << "In UniquePrint() method. " << s << "\n"; }
-      int someValue;
+    using PTuple = std::tuple<void(SimplePrinter::*)(std::string&&), void(SimplePrinter::*)(std::string&&)>;
+    PTuple GetPrinters() const { return std::make_tuple(&SimplePrinter::DebugPrint, &SimplePrinter::ErrorPrint); }
+  private:
+    void DebugPrint(std::string&& s) { std::cout << "DebugPrint of SimplePrinter" << s << "\n"; }
+    void ErrorPrint(std::string&& s) { std::cout << "ErrorPrint of SimplePrinter" << s << "\n"; }
+    int someValue;
   };
 
-#if 0
-  void AnyPrint(FN& f, std::string&& s)
+  struct FancyPrinter
   {
-    f(std::move(s));
+    using PTuple = std::tuple<void(FancyPrinter::*)(std::string&&), void(FancyPrinter::*)(std::string&&)>;
+    PTuple GetPrinters() const { return std::make_tuple(&FancyPrinter::DebugPrint, &FancyPrinter::ErrorPrint); }
+  private:
+    void DebugPrint(std::string&& s) { std::cout << "DebugPrint of FancyPrinter" << s << "\n"; }
+    void ErrorPrint(std::string&& s) { std::cout << "ErrorPrint of FancyPrinter" << s << "\n"; }
+    int someValue;
+  };
+
+  template <typename C, typename TP>
+  void AnyPrint(C& obj, TP&& fs, std::string&& s)
+  {
+    auto f1 = std::get<0>(fs);
+    auto f2 = std::get<1>(fs);
+    (obj.*f1)(std::move(s));
+    (obj.*f2)(std::move(s));
+    //*(std::get<0>(fs))(std::move(s));
+    //*(std::get<1>(fs))(std::move(s));
   }
-#endif
 
   void Test()
   {
     std::cout << "##################### Test-3: Demonstrate passing a class member variable/method as reference to a function\n";
+    // Trying out the SimplePrinter
+    SimplePrinter sp;
+    AnyPrint(sp, sp.GetPrinters(), ": Testing SimplePrinter");
+
+    // Now try out the FancyPrinter
+    FancyPrinter fp;
+    AnyPrint(fp, fp.GetPrinters(), ": Testing FancyPrinter");
   }
 }
 
