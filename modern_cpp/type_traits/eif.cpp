@@ -71,7 +71,7 @@ namespace T3
     typename std::enable_if<!IN>::type Print() { std::cout << "Out direction\n" << std::endl; }
   };
 
-  int Test_Direction()
+  void Test_Direction()
   {
     Direction<true> in;
     Direction<false> out;

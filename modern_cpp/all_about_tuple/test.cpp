@@ -101,10 +101,12 @@ namespace T3
       int someValue;
   };
 
+#if 0
   void AnyPrint(FN& f, std::string&& s)
   {
     f(std::move(s));
   }
+#endif
 
   void Test()
   {
