@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.5.1)
 project(Modern-CPP-Tests)
 
 add_subdirectory(algos)
+add_subdirectory(all_about_aliases)
 add_subdirectory(all_about_constexpr)
 add_subdirectory(all_about_lambdas)
 add_subdirectory(all_about_rvalue_refs)
