@@ -40,6 +40,7 @@ namespace T2
   }
 }
 
+#if 0
 namespace T3
 {
   struct GuidConst
@@ -92,16 +93,15 @@ namespace T3
     constexpr Foo<Three> three;
   }
 }
+#endif
 
 
 int main()
 {
-#if 0
   T1::Test();
   std::cout << "\n";
   T2::Test();
   std::cout << "\n";
-#endif
-  T3::Test();
+  //T3::Test();
   return 0;
 }
