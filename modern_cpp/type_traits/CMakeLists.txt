@@ -8,3 +8,8 @@ add_executable(common_traits      ${COMMON_TRAITS_SOURCES})
 add_executable(enable_if_sfinae   eif.cpp)
 
 
+add_test(NAME CommonTraits
+      COMMAND commmon_traits)
+
+add_test(NAME EnableIfSfinae
+      COMMAND enable_if_sfinae)

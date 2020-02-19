@@ -4,3 +4,6 @@ include_directories("../../inc")
 
 add_executable(const const.cpp)
 
+add_test(NAME "All-About-Consness"
+        COMMAND const)
+
