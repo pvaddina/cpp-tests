@@ -1,3 +1,5 @@
+cmake_minimum_required(VERSION 3.5)
+
 project(All-About-Return-type-Deduction)
 
 enable_testing()
