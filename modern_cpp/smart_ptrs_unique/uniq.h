@@ -43,7 +43,7 @@ namespace T1
     std::unique_ptr<CopyableFooStruct> p2 { new CopyableFooStruct };
     if (p2) { std::cout << "p2 is initialized directly" << std::endl; }
 
-    // make_shared usage
+    // make_unique usage
     std::unique_ptr<CopyableFooStruct> p3 = std::make_unique<CopyableFooStruct>();
     if (p3) { std::cout << "p3 is initialized using make_unique" << std::endl; }
     std::unique_ptr<CopyableFooStruct> p4 = std::make_unique<CopyableFooStruct>("Some rvalue string");
@@ -131,46 +131,7 @@ namespace T3
   }
 }
 
-
 namespace T4
-{
-#if 0
-  template <typename T, typename... Ts>
-  std::unique_ptr<T> MakeAnyStruct(Ts&&... args)
-  {
-    return std::unique_ptr<T>(new T(std::forward<Ts>(args)...));
-  }
-
-  template <typename... Ts>
-  using MakeFooStruct = MakeAnyStruct<CopyableFooStruct, Ts...>;
-
-  void Test()
-  {
-    std::cout << "In T4::Test" << std::endl;
-
-    auto p1 = MakeFooStruct();
-    p1->Print();
-
-    auto p2 = MakeFooStruct(std::string("Only one argument"));
-    p2->Print();
-
-    auto p3 = MakeFooStruct(444, std::string("Two arguments"));
-    p3->Print();
-
-    auto p4 = MakeAnyStruct();
-    p1->Print();
-
-    auto p5 = MakeAnyStruct(std::string("Only one argument"));
-    p2->Print();
-
-    auto p6 = MakeAnyStruct(444, std::string("Two arguments"));
-    p3->Print();
-  }
-#endif
-}
-
-
-namespace T5
 {
   template <typename T, typename... Ts>
   std::unique_ptr<T> MakeAnyStruct(Ts&&... args)
@@ -212,18 +173,3 @@ namespace T5
   // TBD: Add an example with base class unique_ptrs in a vector
 }
 
-
-int test_unique()
-{
-  T1::Test();
-  std::cout << "\n";
-
-  T2::Test();
-  std::cout << "\n";
-
-  T3::Test();
-  std::cout << "\n";
-
-  T5::Test();
-  return 0;
-}
