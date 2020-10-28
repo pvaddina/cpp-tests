@@ -22,7 +22,7 @@ namespace A
 
     void do_test()
     {
-      std::cout << "######################## In StructIniTest" << std::endl;
+      std::cout << "======================= In StructIniTest" << std::endl;
       Basic objBasic;
       objBasic.Print("Default Initialization of objBasic");
 
@@ -106,7 +106,7 @@ namespace A
 
     void do_test()
     {
-      std::cout << "##################### In do_struct_init_test\n";
+      std::cout << "===================== In do_struct_init_test\n";
       testBase();
       testDerived();
     }
