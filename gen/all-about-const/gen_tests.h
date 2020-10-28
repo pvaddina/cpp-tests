@@ -1,6 +1,5 @@
 #include <iostream>
 #include <sstream>
-#include "myprint.h"
 
 
 namespace B
@@ -15,7 +14,7 @@ namespace B
     // p = &localV;
     std::stringstream ss;
     ss << *p << "\n";
-    utils::Print2(ss.str());
+    std::cout << ss.str();
   }
 
   // Note the 'const' specifier before and after the '*'. Before means the value pointed
@@ -31,7 +30,7 @@ namespace B
     // p = &localV;
     std::stringstream ss;
     ss << *p << "\n";
-    utils::Print2(ss.str());
+    std::cout << ss.str();
   }
 
   // *p is declared constant. The value pointed by p cannot be changed. 
@@ -42,7 +41,7 @@ namespace B
     // *p = 999;
     std::stringstream ss;
     ss << *p << "\n";
-    utils::Print2(ss.str());
+    std::cout << ss.str();
   }
 
   // *p is declared constant. The value pointed by p cannot be changed. Same behavior as in test3. 
@@ -53,14 +52,14 @@ namespace B
     // *p = 999;
     std::stringstream ss;
     ss << *p << "\n";
-    utils::Print2(ss.str());
+    std::cout << ss.str();
   }
 
 
 
   void do_gen_tests()
   {
-    utils::Print1("In do_gen_tests\n");
+    std::cout << "In do_gen_tests\n";
     int v = 437;
     test1(&v);
     test2(&v);

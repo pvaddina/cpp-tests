@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include "myprint.h"
 
 namespace A
 {
@@ -116,7 +115,7 @@ namespace A
 
   void StructIniTest()
   {
-    utils::Print1("In StrutIniTest");
+    std::cout << "############################## In StrutIniTest\n";
     TEST1::do_test();
     TEST2::do_test();
   }
