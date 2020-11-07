@@ -134,10 +134,4 @@ namespace T3
   }
 }
 
-int main()
-{
-  T1::Test();
-  T2::Test();
-  T3::Test();
-  return 0;
-}
+
