@@ -16,6 +16,9 @@ int main()
   std::cout << "\n";
 
   T4::Test();
+  std::cout << "\n";
+
+  T5::Test();
 
   return 0;
 }

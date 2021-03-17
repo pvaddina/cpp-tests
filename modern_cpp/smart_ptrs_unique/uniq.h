@@ -141,7 +141,7 @@ namespace T4
 
   void Test()
   {
-    std::cout << "In T5::Test" << std::endl;
+    std::cout << "In T4::Test" << std::endl;
 
     std::vector<std::unique_ptr<FooStruct> > v;
     v.push_back(MakeAnyStruct<FooStruct>());
@@ -171,5 +171,56 @@ namespace T4
   }
   
   // TBD: Add an example with base class unique_ptrs in a vector
+}
+
+
+namespace T5
+{
+  struct Base
+  {
+    Base() = default;
+    virtual ~Base() = default;
+    virtual void Print() const = 0;
+  };
+
+  struct D1 : public Base
+  {
+    D1() = default;
+    ~D1() = default;
+    void Print() const override { std::cout << "In D1" << std::endl; }
+  };
+
+  struct D2 : public Base
+  {
+    D2() = default;
+    ~D2() = default;
+    void Print() const override { std::cout << "In D2" << std::endl; }
+  };
+
+  void UniquePrint(std::unique_ptr<Base> p) { p->Print(); }
+
+  void Test_DerImplicitConversion()
+  {
+    std::unique_ptr<D1> d1 = std::make_unique<D1>();
+    std::unique_ptr<D2> d2 = std::make_unique<D2>();
+    UniquePrint(std::move(d1));
+    UniquePrint(std::move(d2));
+  }
+
+  void Test_DeclareWithBasePtr()
+  {
+    std::unique_ptr<Base> d1 = std::make_unique<D1>();
+    std::unique_ptr<Base> d2 = std::make_unique<D2>();
+    UniquePrint(std::move(d1));
+    UniquePrint(std::move(d2));
+  }
+
+  void Test()
+  {
+    std::cout << "In T5::Test" << std::endl;
+
+    Test_DerImplicitConversion();
+    Test_DeclareWithBasePtr();
+  }
 }
 
