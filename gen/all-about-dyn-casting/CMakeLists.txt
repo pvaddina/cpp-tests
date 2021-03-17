@@ -1,3 +1,5 @@
+cmake_minimum_required(VERSION 3.5)
+
 project(All-about-dynamic-casting)
 
 add_executable(all_about_dyn_casting main.cpp empty_derived_classes.h)

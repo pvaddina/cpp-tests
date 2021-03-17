@@ -5,6 +5,7 @@
 
 int main()
 {
-  T1::EmptyDerivedClasses();
+  T1::Test();
+  T2::Test();
   return 0;
 }

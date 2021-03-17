@@ -197,7 +197,13 @@ namespace T5
     void Print() const override { std::cout << "In D2" << std::endl; }
   };
 
-  void UniquePrint(std::unique_ptr<Base> p) { p->Print(); }
+  void UniquePrint(std::unique_ptr<Base> p) 
+  {
+    if (p)
+      p->Print();
+    else
+      std::cout << "Pointer is invalid" << std::endl;
+  }
 
   void Test_DerImplicitConversion()
   {
@@ -215,12 +221,25 @@ namespace T5
     UniquePrint(std::move(d2));
   }
 
+  void Test_DynamicCasting()
+  {
+    std::unique_ptr<Base> d1_base = std::make_unique<D1>();
+    std::unique_ptr<Base> d2_base = std::make_unique<D2>();
+
+    std::unique_ptr<D1> d1 = dynamic_cast<std::unique_ptr<D1>>(d1_base);
+    UniquePrint(std::move(d1));
+
+    std::unique_ptr<D1> d2 = dynamic_cast<std::unique_ptr<D1>>(d2_base);
+    UniquePrint(std::move(d2));
+  }
+
   void Test()
   {
     std::cout << "In T5::Test" << std::endl;
 
     Test_DerImplicitConversion();
     Test_DeclareWithBasePtr();
+    Test_Casting();
   }
 }
 
