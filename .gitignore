@@ -5,6 +5,7 @@
 *.obj
 *.ORIG
 *.orig
+*.user
 
 build/
 ninja/

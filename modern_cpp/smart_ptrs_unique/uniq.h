@@ -226,11 +226,13 @@ namespace T5
     std::unique_ptr<Base> d1_base = std::make_unique<D1>();
     std::unique_ptr<Base> d2_base = std::make_unique<D2>();
 
+#if 0
     std::unique_ptr<D1> d1 = dynamic_cast<std::unique_ptr<D1>>(d1_base);
     UniquePrint(std::move(d1));
 
     std::unique_ptr<D1> d2 = dynamic_cast<std::unique_ptr<D1>>(d2_base);
     UniquePrint(std::move(d2));
+#endif
   }
 
   void Test()
@@ -239,7 +241,7 @@ namespace T5
 
     Test_DerImplicitConversion();
     Test_DeclareWithBasePtr();
-    Test_Casting();
+    //Test_Casting();
   }
 }
 
