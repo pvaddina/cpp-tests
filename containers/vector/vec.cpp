@@ -187,7 +187,8 @@ void DeletionDuringIteration()
         {
             if (*it == delItem)
             {
-                // Update the iterator after the insertion
+                // Iterators (including the end() iterator) and references to the 
+                // elements at or after the point of the erase are invalidated.
                 it = continents.erase(it);
             }
         }
@@ -195,6 +196,41 @@ void DeletionDuringIteration()
     Print("Test1: After deletion operation", continents);
 }
 
+void SimpleInsertionTests()
+{
+    std::cout << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Simple iteration tests\n";
+    std::vector<int> test {1,2,3,4,5,6,7,8,9,10};
+    Print("Original vector", test);
+
+    std::cout << "Size=" << test.size() << ", capacity=" << test.capacity() << std::endl;
+
+    test.insert(test.begin()+3, 437);
+    Print("After inserting one element", test);
+
+    test.insert(test.begin(), {999,888,777,666});
+    Print("Insert at the beginning with a initializer list of items", test);
+
+    std::vector<int> insertVec = {111,222,333,444,555};
+    test.insert(test.begin()+6, insertVec.begin(), insertVec.end()-3);
+    Print("Insert another vector elements", test);
+}
+
+void IndexBasedIterationAndInsertion()
+{
+    std::cout << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Index based iteration and insertion\n";
+    std::vector<int> test{1,2,3,4,5,6,7,8,9,10,11,12,13,14};
+    for (auto i=0; i<test.size(); ++i)
+    {
+        auto& curVal = test[i];
+        std::cout << "curVal=" << curVal << std::endl;
+        if (curVal%2==0) // Is even
+        {
+            test.insert(test.begin()+i, 0);
+            ++i; // move to the next element to compensate for the newly added element
+        }
+    }
+    Print("After inserting new elements", test);
+}
 
 int main()
 {
@@ -202,8 +238,21 @@ int main()
     InsertionTests();
     FindTests();
     RemovalTests();
+    SimpleInsertionTests();
+
+    // Dangerous usage of insertions using iterators. Potentially leads to invalidated iterators as long as the 
+    // following rule is not ensured: "If after the operation the new size() is greater than old capacity() 
+    // a reallocation takes place, in which case all iterators (including the end() iterator) and all 
+    // references to the elements are invalidated. "
     InsertionDuringIteration();
-    DeletionDuringIteration();
+    // The following example will lead to a crash sometimes because: Iterators (including the end() iterator) 
+    // and references to the elements at or after the point of the erase are invalidated.
+    //DeletionDuringIteration();
+
+    // Instead use the following safe method of inserting elements while iterating. Again this is quite inefficient.
+    // Should be used in rare cases. If one needs to do such operations on bigger vectors, means the choice of the 
+    // data structure or the very algorithm where such insertions are required should be questioned. 
+    IndexBasedIterationAndInsertion();
     return 0;
 }
 

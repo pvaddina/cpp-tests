@@ -3,6 +3,7 @@ project(CPP-Tests)
 
 enable_testing()
 
+add_subdirectory(containers)
 add_subdirectory(concurrency)
 add_subdirectory(curious_recursive)
 add_subdirectory(gen)

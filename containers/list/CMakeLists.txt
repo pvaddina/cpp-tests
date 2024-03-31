@@ -1,9 +1,9 @@
-project(Vectors)
+project(StdList_Project)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(vector vec.cpp)
+add_executable(stdlist list.cpp)
 
-add_test(NAME Vector-use-cases
-      COMMAND vector)
+add_test(NAME StdList-use-cases
+      COMMAND stdlist)
 
